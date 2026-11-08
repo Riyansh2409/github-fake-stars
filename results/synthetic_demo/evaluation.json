@@ -1,0 +1,253 @@
+{
+  "run": "synthetic_demo",
+  "known_campaign": {
+    "documented_repos": 72,
+    "documented_repos_in_sample": 32,
+    "repo_coverage": 0.4444444444444444,
+    "documented_accounts": 800,
+    "listed_accounts_in_sample": 500,
+    "documented_repo_stargazers_in_sample": 1372,
+    "before_filtering": {
+      "repo_recall": 1.0,
+      "listed_account_recall": 0.982,
+      "stargazer_account_recall": 0.36151603498542273
+    },
+    "after_filtering": {
+      "repo_recall": 1.0,
+      "listed_account_recall": 1.0,
+      "stargazer_account_recall": 0.6115160349854227
+    }
+  },
+  "deletion": {
+    "repos": {
+      "campaign_repos": {
+        "n_checked": 92,
+        "n_resolved": 92,
+        "deleted": 66,
+        "rate": 0.717391304347826,
+        "ci95": [
+          0.618110791059949,
+          0.7992445118565297
+        ]
+      },
+      "random_baseline": {
+        "n_checked": 3000,
+        "n_resolved": 3000,
+        "deleted": 152,
+        "rate": 0.050666666666666665,
+        "ci95": [
+          0.043377187400747794,
+          0.05910544683669003
+        ]
+      },
+      "matched_baseline": {
+        "n_checked": 66,
+        "n_resolved": 66,
+        "deleted": 19,
+        "rate": 0.2878787878787879,
+        "ci95": [
+          0.19271802784703906,
+          0.40637477644152253
+        ]
+      }
+    },
+    "accounts": {
+      "flagged_participants": {
+        "n_checked": 1000,
+        "n_resolved": 1000,
+        "deleted": 605,
+        "rate": 0.605,
+        "ci95": [
+          0.5743542580369126,
+          0.6348420932599453
+        ]
+      },
+      "random_baseline": {
+        "n_checked": 1000,
+        "n_resolved": 1000,
+        "deleted": 62,
+        "rate": 0.062,
+        "ci95": [
+          0.04866396326101466,
+          0.07868839990066345
+        ]
+      }
+    }
+  },
+  "profiling": {
+    "n_flagged": 3000,
+    "n_baseline": 3000,
+    "table": [
+      {
+        "feature": "active_days",
+        "flagged_median": 0.0,
+        "baseline_median": 15.172546296296296,
+        "flagged_mean": 15.880320721450616,
+        "baseline_mean": 22.572794652777777,
+        "mannwhitney_p": 3.806862203349817e-189
+      },
+      {
+        "feature": "n_events",
+        "flagged_median": 1.0,
+        "baseline_median": 9.0,
+        "flagged_mean": 4.448333333333333,
+        "baseline_mean": 14.508333333333333,
+        "mannwhitney_p": 1.7039516080645583e-298
+      },
+      {
+        "feature": "n_starred_repos",
+        "flagged_median": 1.0,
+        "baseline_median": 2.0,
+        "flagged_mean": 3.7506666666666666,
+        "baseline_mean": 2.811,
+        "mannwhitney_p": 1.7032863650957863e-75
+      },
+      {
+        "feature": "star_share",
+        "flagged_median": 1.0,
+        "baseline_median": 0.25,
+        "flagged_mean": 0.9017965616499091,
+        "baseline_mean": 0.3906219171677276,
+        "mannwhitney_p": 0.0
+      },
+      {
+        "feature": "share_push",
+        "flagged_median": 0.0,
+        "baseline_median": 0.36363636363636365,
+        "flagged_mean": 0.006536988918219784,
+        "baseline_mean": 0.31229857675384437,
+        "mannwhitney_p": 0.0
+      },
+      {
+        "feature": "share_fork",
+        "flagged_median": 0.0,
+        "baseline_median": 0.0,
+        "flagged_mean": 0.07145834716322948,
+        "baseline_mean": 0.03540438236800955,
+        "mannwhitney_p": 2.222581826767699e-23
+      },
+      {
+        "feature": "share_create",
+        "flagged_median": 0.0,
+        "baseline_median": 0.038461538461538464,
+        "flagged_mean": 0.01802651303878506,
+        "baseline_mean": 0.072886979469243,
+        "mannwhitney_p": 2.1252517705814788e-195
+      },
+      {
+        "feature": "share_issues",
+        "flagged_median": 0.0,
+        "baseline_median": 0.0,
+        "flagged_mean": 0.0005375614850969234,
+        "baseline_mean": 0.03740398715679377,
+        "mannwhitney_p": 2.3535576015372807e-283
+      },
+      {
+        "feature": "share_pr",
+        "flagged_median": 0.0,
+        "baseline_median": 0.0,
+        "flagged_mean": 0.0006194350252717123,
+        "baseline_mean": 0.06456117984522743,
+        "mannwhitney_p": 0.0
+      },
+      {
+        "feature": "share_comment",
+        "flagged_median": 0.0,
+        "baseline_median": 0.0,
+        "flagged_mean": 0.000866193151647329,
+        "baseline_mean": 0.06759216471015643,
+        "mannwhitney_p": 0.0
+      }
+    ]
+  },
+  "ablation": [
+    {
+      "variant": "low_activity_only",
+      "flagged_stars": 5845,
+      "flagged_repos_pre_filter": 37,
+      "campaign_repos": 25,
+      "campaign_participants": 3897,
+      "flagged_participants": 3644,
+      "known_repo_recall_pre": 0.0,
+      "known_listed_account_recall_pre": 0.0,
+      "known_stargazer_account_recall_pre": 0.0,
+      "known_repo_recall": 0.0,
+      "known_listed_account_recall": 0.0,
+      "known_stargazer_account_recall": 0.0058309037900874635,
+      "deleted_rate_flagged": 0.8,
+      "deleted_rate_random": 0.050666666666666665,
+      "deletion_diff": 0.7493333333333334,
+      "gt_repo_precision": 1.0,
+      "gt_repo_recall": 0.2336448598130841,
+      "gt_account_precision": 1.0,
+      "gt_account_recall": 0.6998271557518725
+    },
+    {
+      "variant": "lockstep_only",
+      "flagged_stars": 12471,
+      "flagged_repos_pre_filter": 67,
+      "campaign_repos": 67,
+      "campaign_participants": 1590,
+      "flagged_participants": 964,
+      "known_repo_recall_pre": 1.0,
+      "known_listed_account_recall_pre": 0.982,
+      "known_stargazer_account_recall_pre": 0.36151603498542273,
+      "known_repo_recall": 1.0,
+      "known_listed_account_recall": 1.0,
+      "known_stargazer_account_recall": 0.608600583090379,
+      "deleted_rate_flagged": 0.6865671641791045,
+      "deleted_rate_random": 0.050666666666666665,
+      "deletion_diff": 0.6359004975124378,
+      "gt_repo_precision": 0.8507462686567164,
+      "gt_repo_recall": 0.5327102803738317,
+      "gt_account_precision": 0.8952282157676349,
+      "gt_account_recall": 0.16573842903783367
+    },
+    {
+      "variant": "combined",
+      "flagged_stars": 18316,
+      "flagged_repos_pre_filter": 104,
+      "campaign_repos": 92,
+      "campaign_participants": 5479,
+      "flagged_participants": 4608,
+      "known_repo_recall_pre": 1.0,
+      "known_listed_account_recall_pre": 0.982,
+      "known_stargazer_account_recall_pre": 0.36151603498542273,
+      "known_repo_recall": 1.0,
+      "known_listed_account_recall": 1.0,
+      "known_stargazer_account_recall": 0.6115160349854227,
+      "deleted_rate_flagged": 0.717391304347826,
+      "deleted_rate_random": 0.050666666666666665,
+      "deletion_diff": 0.6667246376811594,
+      "gt_repo_precision": 0.8913043478260869,
+      "gt_repo_recall": 0.7663551401869159,
+      "gt_account_precision": 0.9780815972222222,
+      "gt_account_recall": 0.8655655847897061
+    }
+  ],
+  "ground_truth": {
+    "gt_repo_precision": 0.8913043478260869,
+    "gt_repo_recall": 0.7663551401869159,
+    "gt_account_precision": 0.9780815972222222,
+    "gt_account_recall": 0.8655655847897061,
+    "retained_by_label": {
+      "seller_2": 25,
+      "low_activity": 25,
+      "seller_0": 18,
+      "seller_1": 14,
+      "organic_community": 10
+    },
+    "planted_by_label": {
+      "low_activity": 25,
+      "seller_2": 25,
+      "organic_community": 22,
+      "seller_0": 18,
+      "seller_3": 15,
+      "seller_1": 14,
+      "low_activity_small": 10,
+      "organic_viral": 2
+    }
+  },
+  "runtime_s": 0.26,
+  "peak_memory_mb": 480.8
+}

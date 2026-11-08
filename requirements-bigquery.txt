@@ -1,0 +1,5 @@
+# Only needed for `python -m fakestars extract-bq` (real data via BigQuery)
+-r requirements.txt
+google-cloud-bigquery>=3.11
+google-cloud-bigquery-storage>=2.24
+db-dtypes>=1.1

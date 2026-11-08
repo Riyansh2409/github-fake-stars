@@ -1,0 +1,40 @@
+# Synthetic demo: runs end-to-end on a laptop in a few minutes with planted ground truth.
+# Same detection thresholds as the real run. Used for implementation checks, not real-world claims.
+extends: default.yaml
+run_name: synthetic_demo
+
+data:
+  source: events
+  raw_dir: data/synthetic/raw
+  processed_db: data/synthetic/processed.duckdb
+
+evaluation:
+  reference_dir: data/synthetic/reference
+  deletion_source: oracle
+  oracle_path: data/synthetic/reference/deletion_oracle.parquet
+  deletion_cache: null
+  profile_sample: 3000
+
+synthetic:
+  seed: 7
+  n_repos: 20000
+  zipf: 1.1
+  n_users: 15000
+  events_mu: 2.3              # lognormal events per organic user
+  events_sigma: 1.0
+  n_oneoff: 5000              # genuine one-off accounts (star one repo, leave) -> low-activity false positives
+  viral: {count: 2, stars: 1500, days: 5}        # organic bursts on single repos
+  communities:                # legitimate coordinated starring (false-positive trap)
+    - {members: 120, repos: 12, participation: [0.35, 0.65], spread_days: [2, 20]}
+    - {members: 90, repos: 10, participation: [0.25, 0.45], spread_days: [3, 25]}
+  campaign_organic_stars: 30  # mean organic stars a campaign repo also gets
+  sellers:                    # lockstep campaigns: a pool of accounts serving many customer repos
+    - {pool: 300, orders: 18, fraction: [0.55, 0.85], delivery_days: [1, 10], ghost: true}
+    - {pool: 200, orders: 14, fraction: [0.60, 0.90], delivery_days: [1, 7], ghost: true}
+    - {pool: 400, orders: 25, fraction: [0.50, 0.80], delivery_days: [2, 12], ghost: false}
+    - {pool: 250, orders: 15, fraction: [0.25, 0.45], delivery_days: [1, 10], ghost: false}   # evasive seller
+  low_campaigns: {count: 25, size: [60, 250], delivery_days: [1, 7], fork_prob: 0.2}
+  small_low_campaigns: {count: 10, size: [15, 45]}   # below the 50-star cutoff (expected misses)
+  ghost_unseen: {repos: 40, accounts: 300}           # documented entries absent from the sample
+  deletion_prob: {campaign_repo: 0.85, organic_repo: 0.05, campaign_actor: 0.6, organic_actor: 0.03}
+  noise: {duplicate: 0.005, null_actor: 0.0005, null_ts: 0.0002, unknown_type: 0.0001, null_event_id: 0.001, out_of_window: 0.0001}

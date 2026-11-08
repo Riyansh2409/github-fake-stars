@@ -1,0 +1,11 @@
+# No-cloud pilot: downloads hourly GH Archive files directly (no BigQuery account needed).
+# One week is ~170 files (~15-20 GB download, ~1 GB parquet after column pruning).
+extends: default.yaml
+run_name: gharchive_pilot
+
+data:
+  start: "2024-10-14"
+  end: "2024-10-20"
+  source: events
+  raw_dir: data/gharchive/raw
+  processed_db: data/processed/gharchive_pilot.duckdb

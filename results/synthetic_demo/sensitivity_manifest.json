@@ -1,0 +1,259 @@
+{
+  "created_utc": "2026-11-08T18:13:40+00:00",
+  "git_commit": null,
+  "python": "3.13.18",
+  "platform": "Linux-6.18.44-fc-v310-x86_64-with-glibc2.39",
+  "packages": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "pyarrow": "26.0.1",
+    "duckdb": "2.0.0",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "google-cloud-bigquery": null
+  },
+  "config": {
+    "run_name": "synthetic_demo",
+    "data": {
+      "start": "2024-01-01",
+      "end": "2024-03-31",
+      "source": "events",
+      "raw_dir": "data/synthetic/raw",
+      "processed_db": "data/synthetic/processed.duckdb",
+      "small_actor_max_other_events": 2
+    },
+    "extraction": {
+      "bq_project": null,
+      "chunk_days": 31,
+      "overlap_days": 2,
+      "max_gb_billed": 300,
+      "gharchive_workers": 4
+    },
+    "low_activity": {
+      "max_other_events": 1,
+      "repo_min_stars": 50
+    },
+    "lockstep": {
+      "n": 50,
+      "m": 10,
+      "rho": 0.5,
+      "delta_t_days": 30,
+      "user_side": true,
+      "max_iter": 15,
+      "max_seeds": 3000,
+      "chunk_days": null,
+      "chunk_overlap_days": 30
+    },
+    "filtering": {
+      "spike_min_stars": 50,
+      "spike_min_share": 0.5,
+      "alltime_min_share": 0.1
+    },
+    "evaluation": {
+      "seed": 42,
+      "reference_dir": "data/synthetic/reference",
+      "deletion_source": "oracle",
+      "oracle_path": "data/synthetic/reference/deletion_oracle.parquet",
+      "github_token_env": "GITHUB_TOKEN",
+      "deletion_cache": null,
+      "max_repo_checks": 3000,
+      "max_actor_checks": 1000,
+      "profile_sample": 3000
+    },
+    "sensitivity": {
+      "check_deletion": true,
+      "one_at_a_time": {
+        "star_cutoff": [
+          20,
+          35,
+          50,
+          75,
+          100
+        ],
+        "n": [
+          25,
+          35,
+          50,
+          75,
+          100
+        ],
+        "m": [
+          5,
+          8,
+          10,
+          15,
+          20
+        ],
+        "rho": [
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7
+        ],
+        "delta_t_days": [
+          7,
+          14,
+          30,
+          45,
+          60
+        ]
+      },
+      "combined": [
+        {
+          "name": "lenient",
+          "star_cutoff": 35,
+          "n": 35,
+          "m": 8,
+          "rho": 0.4,
+          "delta_t_days": 45
+        },
+        {
+          "name": "strict",
+          "star_cutoff": 75,
+          "n": 75,
+          "m": 15,
+          "rho": 0.6,
+          "delta_t_days": 14
+        }
+      ]
+    },
+    "output": {
+      "results_dir": "results"
+    },
+    "synthetic": {
+      "seed": 7,
+      "n_repos": 20000,
+      "zipf": 1.1,
+      "n_users": 15000,
+      "events_mu": 2.3,
+      "events_sigma": 1.0,
+      "n_oneoff": 5000,
+      "viral": {
+        "count": 2,
+        "stars": 1500,
+        "days": 5
+      },
+      "communities": [
+        {
+          "members": 120,
+          "repos": 12,
+          "participation": [
+            0.35,
+            0.65
+          ],
+          "spread_days": [
+            2,
+            20
+          ]
+        },
+        {
+          "members": 90,
+          "repos": 10,
+          "participation": [
+            0.25,
+            0.45
+          ],
+          "spread_days": [
+            3,
+            25
+          ]
+        }
+      ],
+      "campaign_organic_stars": 30,
+      "sellers": [
+        {
+          "pool": 300,
+          "orders": 18,
+          "fraction": [
+            0.55,
+            0.85
+          ],
+          "delivery_days": [
+            1,
+            10
+          ],
+          "ghost": true
+        },
+        {
+          "pool": 200,
+          "orders": 14,
+          "fraction": [
+            0.6,
+            0.9
+          ],
+          "delivery_days": [
+            1,
+            7
+          ],
+          "ghost": true
+        },
+        {
+          "pool": 400,
+          "orders": 25,
+          "fraction": [
+            0.5,
+            0.8
+          ],
+          "delivery_days": [
+            2,
+            12
+          ],
+          "ghost": false
+        },
+        {
+          "pool": 250,
+          "orders": 15,
+          "fraction": [
+            0.25,
+            0.45
+          ],
+          "delivery_days": [
+            1,
+            10
+          ],
+          "ghost": false
+        }
+      ],
+      "low_campaigns": {
+        "count": 25,
+        "size": [
+          60,
+          250
+        ],
+        "delivery_days": [
+          1,
+          7
+        ],
+        "fork_prob": 0.2
+      },
+      "small_low_campaigns": {
+        "count": 10,
+        "size": [
+          15,
+          45
+        ]
+      },
+      "ghost_unseen": {
+        "repos": 40,
+        "accounts": 300
+      },
+      "deletion_prob": {
+        "campaign_repo": 0.85,
+        "organic_repo": 0.05,
+        "campaign_actor": 0.6,
+        "organic_actor": 0.03
+      },
+      "noise": {
+        "duplicate": 0.005,
+        "null_actor": 0.0005,
+        "null_ts": 0.0002,
+        "unknown_type": 0.0001,
+        "null_event_id": 0.001,
+        "out_of_window": 0.0001
+      }
+    }
+  },
+  "config_path": "config/synthetic.yaml",
+  "peak_memory_mb": 480.8
+}

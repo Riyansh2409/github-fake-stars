@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# raw and processed data (regenerable; can be large)
+data/raw/
+data/raw_ghost/
+data/gharchive/
+data/processed/
+data/synthetic/
+*.duckdb
+*.duckdb.wal
+
+# account/repository identifiers from detection runs stay local (proposal Section 7)
+results/*/detections/
+results/*/profiling_features.parquet

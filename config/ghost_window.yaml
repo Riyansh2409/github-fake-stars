@@ -1,0 +1,11 @@
+# Second real-data window chosen after the pilot (see docs/DATASET.md, "Pilot finding").
+# The Stargazers Ghost Network has almost no star activity in Q1 2024 (30 star events on 2 repos),
+# so known-campaign recall can only be measured on a window where the campaign was active.
+extends: default.yaml
+run_name: ghost_window_2024
+
+data:
+  start: "2024-09-01"
+  end: "2024-11-30"
+  raw_dir: data/raw_ghost
+  processed_db: data/processed/ghost_window.duckdb

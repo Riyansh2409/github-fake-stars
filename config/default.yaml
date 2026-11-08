@@ -1,0 +1,65 @@
+# Default configuration: real GH Archive data, thresholds from the proposal (Table 1).
+# Every run copies the resolved config into results/<run_name>/run_manifest.json.
+
+run_name: q1_2024
+
+data:
+  start: "2024-01-01"            # inclusive (UTC)
+  end: "2024-03-31"              # inclusive (UTC)
+  source: bigquery               # bigquery | events  (events = raw per-event parquet: GH Archive download or synthetic)
+  raw_dir: data/raw              # where extract-* writes
+  processed_db: data/processed/gharchive.duckdb
+  small_actor_max_other_events: 2   # export non-star events of stargazers with <= this many non-star events
+
+extraction:
+  bq_project: null               # your GCP project id (or set env GOOGLE_CLOUD_PROJECT)
+  chunk_days: 31                 # star events are extracted in time chunks ...
+  overlap_days: 2                # ... that overlap; duplicates are removed in `build`
+  max_gb_billed: 300             # safety cap per BigQuery query
+  gharchive_workers: 4
+
+low_activity:
+  max_other_events: 1            # at most one extra event, on the starred repo, same UTC day
+  repo_min_stars: 50             # star cutoff
+
+lockstep:
+  n: 50                          # min accounts in a group
+  m: 10                          # min repositories in a group
+  rho: 0.5                       # min share of group accounts per repository
+  delta_t_days: 30               # time window
+  user_side: true                # also require each account to star >= rho*|P| repos in-window (original CopyCatch)
+  max_iter: 15
+  max_seeds: 3000
+  chunk_days: null               # null = run on the full window; else overlapping chunks of this length
+  chunk_overlap_days: 30
+
+filtering:
+  spike_min_stars: 50            # flagged stars in a month  > 50
+  spike_min_share: 0.5           # and their monthly share   > 50%
+  alltime_min_share: 0.10        # flagged share of all stars > 10%
+
+evaluation:
+  seed: 42
+  reference_dir: data/reference          # ghost_network_repos.csv / ghost_network_accounts.csv
+  deletion_source: github_api            # github_api | oracle (synthetic only)
+  oracle_path: null
+  github_token_env: GITHUB_TOKEN
+  deletion_cache: data/processed/deletion_cache.json
+  max_repo_checks: 3000                  # per group (flagged / random / matched), API budget
+  max_actor_checks: 1000
+  profile_sample: 5000
+
+sensitivity:
+  check_deletion: true
+  one_at_a_time:
+    star_cutoff: [20, 35, 50, 75, 100]
+    n: [25, 35, 50, 75, 100]
+    m: [5, 8, 10, 15, 20]
+    rho: [0.3, 0.4, 0.5, 0.6, 0.7]
+    delta_t_days: [7, 14, 30, 45, 60]
+  combined:
+    - {name: lenient, star_cutoff: 35, n: 35, m: 8, rho: 0.4, delta_t_days: 45}
+    - {name: strict, star_cutoff: 75, n: 75, m: 15, rho: 0.6, delta_t_days: 14}
+
+output:
+  results_dir: results

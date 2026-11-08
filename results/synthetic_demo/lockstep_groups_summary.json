@@ -1,0 +1,39 @@
+[
+  {
+    "group_id": 0,
+    "n_accounts": 372,
+    "n_repos": 25,
+    "min_repo_share": 0.524,
+    "median_repo_share": 0.659,
+    "first_window": "2024-01-04 06:55:06",
+    "last_window": "2024-03-16 00:43:41"
+  },
+  {
+    "group_id": 1,
+    "n_accounts": 293,
+    "n_repos": 18,
+    "min_repo_share": 0.587,
+    "median_repo_share": 0.691,
+    "first_window": "2024-01-06 02:03:16",
+    "last_window": "2024-03-30 00:20:08"
+  },
+  {
+    "group_id": 2,
+    "n_accounts": 198,
+    "n_repos": 14,
+    "min_repo_share": 0.626,
+    "median_repo_share": 0.758,
+    "first_window": "2024-01-06 20:55:29",
+    "last_window": "2024-03-21 21:38:23"
+  },
+  {
+    "group_id": 3,
+    "n_accounts": 101,
+    "n_repos": 10,
+    "min_repo_share": 0.56,
+    "median_repo_share": 0.645,
+    "first_window": "2024-01-02 13:24:21",
+    "last_window": "2024-03-24 01:29:17",
+    "merged_searches": 3
+  }
+]
