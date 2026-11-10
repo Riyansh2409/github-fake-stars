@@ -32,9 +32,9 @@
     "flagged_participants": 4608
   },
   "runtime_s": {
-    "low_activity_s": 0.02,
-    "lockstep_s": 0.052,
-    "filtering_s": 0.028
+    "low_activity_s": 0.045,
+    "lockstep_s": 0.106,
+    "filtering_s": 0.037
   },
-  "peak_memory_mb": 480.8
+  "peak_memory_mb": 481.5
 }

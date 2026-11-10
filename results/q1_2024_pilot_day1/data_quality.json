@@ -1,0 +1,23 @@
+{
+  "window": [
+    "2024-01-01 00:00:00",
+    "2024-01-02 00:00:00"
+  ],
+  "mode": "events",
+  "raw_files": 1,
+  "raw_rows": 3879843,
+  "removed_missing_ids": 0,
+  "removed_invalid_timestamp": 0,
+  "unexpected_types": {},
+  "removed_unexpected_type": 0,
+  "rows_without_event_id": 0,
+  "removed_duplicates": 6,
+  "clean_rows": 3879837,
+  "star_events": 131765,
+  "restar_events_collapsed": 1893,
+  "unique_star_edges": 129872,
+  "unique_accounts": 77812,
+  "unique_repositories": 71114,
+  "profiled_accounts": 77812,
+  "small_event_rows": 10986
+}

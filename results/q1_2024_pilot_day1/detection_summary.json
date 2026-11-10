@@ -1,0 +1,38 @@
+{
+  "events": {
+    "unique_star_edges": 129872,
+    "accounts": 77812,
+    "repositories": 71114
+  },
+  "low_activity": {
+    "low_activity_accounts": 47526,
+    "repos_over_cutoff": 45,
+    "flagged_stars": 5312
+  },
+  "lockstep": {
+    "input_edges": 129872,
+    "edges_after_pruning": 0,
+    "groups": 0,
+    "flagged_edges": 0,
+    "seeds_tried": 0
+  },
+  "before_filtering": {
+    "flagged_stars_low": 5312,
+    "flagged_stars_lockstep": 0,
+    "flagged_stars_union": 5312,
+    "flagged_stars_both": 0,
+    "flagged_repos": 45,
+    "flagged_accounts": 5312
+  },
+  "after_filtering": {
+    "campaign_repos": 29,
+    "campaign_participants": 4972,
+    "flagged_participants": 3198
+  },
+  "runtime_s": {
+    "low_activity_s": 0.06,
+    "lockstep_s": 0.042,
+    "filtering_s": 0.021
+  },
+  "peak_memory_mb": 242.7
+}

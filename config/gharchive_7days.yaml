@@ -1,0 +1,13 @@
+extends: default.yaml
+
+run_name: q1_2024_pilot_7days
+
+data:
+  start: "2024-01-01"
+  end: "2024-01-07"
+  source: events
+  raw_dir: data/gharchive/q1_2024_pilot_7days
+  processed_db: data/processed/q1_2024_pilot_7days.duckdb
+
+extraction:
+  gharchive_workers: 2

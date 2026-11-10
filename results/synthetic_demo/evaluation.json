@@ -107,7 +107,7 @@
         "flagged_median": 1.0,
         "baseline_median": 0.25,
         "flagged_mean": 0.9017965616499091,
-        "baseline_mean": 0.3906219171677276,
+        "baseline_mean": 0.39062191716772765,
         "mannwhitney_p": 0.0
       },
       {
@@ -115,7 +115,7 @@
         "flagged_median": 0.0,
         "baseline_median": 0.36363636363636365,
         "flagged_mean": 0.006536988918219784,
-        "baseline_mean": 0.31229857675384437,
+        "baseline_mean": 0.3122985767538444,
         "mannwhitney_p": 0.0
       },
       {
@@ -131,7 +131,7 @@
         "flagged_median": 0.0,
         "baseline_median": 0.038461538461538464,
         "flagged_mean": 0.01802651303878506,
-        "baseline_mean": 0.072886979469243,
+        "baseline_mean": 0.07288697946924298,
         "mannwhitney_p": 2.1252517705814788e-195
       },
       {
@@ -147,7 +147,7 @@
         "flagged_median": 0.0,
         "baseline_median": 0.0,
         "flagged_mean": 0.0006194350252717123,
-        "baseline_mean": 0.06456117984522743,
+        "baseline_mean": 0.06456117984522741,
         "mannwhitney_p": 0.0
       },
       {
@@ -248,6 +248,6 @@
       "organic_viral": 2
     }
   },
-  "runtime_s": 0.26,
-  "peak_memory_mb": 480.8
+  "runtime_s": 0.18,
+  "peak_memory_mb": 481.5
 }

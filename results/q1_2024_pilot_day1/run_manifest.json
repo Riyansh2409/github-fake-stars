@@ -1,0 +1,126 @@
+{
+  "created_utc": "2026-11-09T16:54:37+00:00",
+  "git_commit": "07386f4a5be8d924221956d666294e3df4aa901c",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.1",
+    "pyarrow": "26.0.1",
+    "duckdb": "2.0.0",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.2",
+    "google-cloud-bigquery": null
+  },
+  "config": {
+    "run_name": "q1_2024_pilot_day1",
+    "data": {
+      "start": "2024-01-01",
+      "end": "2024-01-01",
+      "source": "events",
+      "raw_dir": "data/gharchive/q1_2024_pilot_day1",
+      "processed_db": "data/processed/q1_2024_pilot_day1.duckdb",
+      "small_actor_max_other_events": 2
+    },
+    "extraction": {
+      "bq_project": null,
+      "chunk_days": 31,
+      "overlap_days": 2,
+      "max_gb_billed": 300,
+      "gharchive_workers": 2
+    },
+    "low_activity": {
+      "max_other_events": 1,
+      "repo_min_stars": 50
+    },
+    "lockstep": {
+      "n": 50,
+      "m": 10,
+      "rho": 0.5,
+      "delta_t_days": 30,
+      "user_side": true,
+      "max_iter": 15,
+      "max_seeds": 3000,
+      "chunk_days": null,
+      "chunk_overlap_days": 30
+    },
+    "filtering": {
+      "spike_min_stars": 50,
+      "spike_min_share": 0.5,
+      "alltime_min_share": 0.1
+    },
+    "evaluation": {
+      "seed": 42,
+      "reference_dir": "data/reference",
+      "deletion_source": "github_api",
+      "oracle_path": null,
+      "github_token_env": "GITHUB_TOKEN",
+      "deletion_cache": "data/processed/deletion_cache.json",
+      "max_repo_checks": 3000,
+      "max_actor_checks": 1000,
+      "profile_sample": 5000
+    },
+    "sensitivity": {
+      "check_deletion": true,
+      "one_at_a_time": {
+        "star_cutoff": [
+          20,
+          35,
+          50,
+          75,
+          100
+        ],
+        "n": [
+          25,
+          35,
+          50,
+          75,
+          100
+        ],
+        "m": [
+          5,
+          8,
+          10,
+          15,
+          20
+        ],
+        "rho": [
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7
+        ],
+        "delta_t_days": [
+          7,
+          14,
+          30,
+          45,
+          60
+        ]
+      },
+      "combined": [
+        {
+          "name": "lenient",
+          "star_cutoff": 35,
+          "n": 35,
+          "m": 8,
+          "rho": 0.4,
+          "delta_t_days": 45
+        },
+        {
+          "name": "strict",
+          "star_cutoff": 75,
+          "n": 75,
+          "m": 15,
+          "rho": 0.6,
+          "delta_t_days": 14
+        }
+      ]
+    },
+    "output": {
+      "results_dir": "results"
+    }
+  },
+  "config_path": "config\\gharchive_one_day.yaml"
+}
